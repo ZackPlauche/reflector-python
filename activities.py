@@ -12,13 +12,13 @@ gratitude = OrderedListQuestion('What are you grateful for?', list_style='. I\'m
 improvements = ListQuestion('What can you do to improve?', name='Improvements')
 meaningful_experience = TextQuestion('What was one meaningful experience you had today?', name='Meaningful Experience')
 perfect_day = OrderedListQuestion('Forget everything you just typed. Now,...\n\n' 'What does your perfect day look like?', name='Perfect Day')
-personal_priorities = OrderedListQuestion('What are your top 3 personal priorities (starting with The ONE Thing)?', limit=3, name='Personal Priorities'),
+personal_priorities = OrderedListQuestion('What are your top 3 personal priorities (starting with The ONE Thing)?', limit=3, name='Personal Priorities')
 reflect = TextQuestion('Take some time to reflect on your life.', name='Reflection')
 self_love = OrderedListQuestion('What are 10 reasons you love yourself?', limit=10, list_style='. I love myself because ', name='10 Reasons I Love Myself')
 type_of_person = ListQuestion('What type of person do you choose to be today?', list_style='• I choose to be ', name='Type of Person')
 weekly_wins = ListQuestion('What are your wins for the week?', name='Weekly Wins')
 wins = ListQuestion('What are your wins?', name='Wins')
-work_priorities = OrderedListQuestion('What are your top 3 professional priorities (starting with The ONE Thing)?', limit=3, name='Work Priorities'),
+work_priorities = OrderedListQuestion('What are your top 3 professional priorities (starting with The ONE Thing)?', limit=3, name='Work Priorities')
 ten_ideas_to_improve_your_life = OrderedListQuestion('What are 10 ideas to improve your life?', limit=10, loop=True, name='10 Ideas to Improve Your Life')
 
 
@@ -33,13 +33,13 @@ physiology = IntegrityActivity('Physiology', [
     YesNoQuestion('Is your environment clean and organized?', name='Clean Environment'),
     YesNoQuestion('Do you feel complete wellness?', name='Feeling of Wellness'),
 ], solutions=[
-        'Taking a nap up to 30 minutes',
-        'Drinking some water',
-        'Eating something healthy',
-        'Going for a 30 minute walk',
-        'Putting on more clothes, taking off some clothes, turning on a fan, Air Conditioner, heater, or drinking something warm, like tea :)',
-        'Cleaning  and/or organizing your environment',
-        'Drinking an herbal remedy, like ginger, lemon, and honey tea'
+    'Taking a nap up to 30 minutes',
+    'Drinking some water',
+    'Eating something healthy',
+    'Going for a 30 minute walk',
+    'Putting on more clothes, taking off some clothes, turning on a fan, Air Conditioner, heater, or drinking something warm, like tea :)',
+    'Cleaning  and/or organizing your environment',
+    'Drinking an herbal remedy, like ginger, lemon, and honey tea'
 ])
 
 security = IntegrityActivity('Security', [
@@ -159,3 +159,15 @@ birthday_reflection = Activity('It\'s My Birthday', [
     OrderedListQuestion('What are 10 ideas to make this year your most amazing year so far?', name='10 Ideas for the Best Year So Far')
 ], intro_text='Happy birthday sir! :)')
 
+new_activity = Activity('New Activity', [
+    ListQuestion('What good things am I experiencing?'),
+    ListQuestion('What should I do to enjoy them more?'),
+    ListQuestion('What are you doing that\'s working?'),
+    ListQuestion('What are you doing that\'s not working?'),
+    ListQuestion('What should you be doing that you\'re not?'),
+    ListQuestion('What\'s blocking you from acheiving what you want?'),
+    ListQuestion('What can you do to remove those blockers?'),
+    ListQuestion('What problems am I having?'),
+    ListQuestion('What in your environment can you change to get the results you\'re looking to have?'),
+    ListQuestion('How can you do those things?'),
+]).run()

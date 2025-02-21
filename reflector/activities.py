@@ -29,12 +29,12 @@ class Activity:
         self._get_answers()
         self._export()
         return self.answers
-    
-    def add_intro(self, intro_text):
-        """Creates a copy of an activity with added intro text. Used
-        when adding a predefined activity to another activity to not edit all other
+
+    def add_intro(self, intro_text) -> 'Activity':
+        """Creates a copy of an activity with added intro text. Used when adding
+        a predefined activity to another activity to not edit all other 
         instances of the activity.
-        
+
         Example:
 
         Do this to change the intro text of an activity:
@@ -42,7 +42,7 @@ class Activity:
         >>> other_activity = Activity('Other Activity', [
         ...    predefined_activity.add_intro('Custom Activity Text')
         ... ])
-        
+
         DO NOT do this:
         >>> predefined_activity.intro_text = 'Something else
         >>> other_activity = Activity('Other Activity', [
@@ -86,9 +86,9 @@ class Activity:
         df = pd.DataFrame(data=data, columns=columns)
         if file_path.exists():
             previous_df = pd.read_csv(file_path)
-            df = previous_df.append(df)
+            df = previous_df._append(df)
         df.to_csv(file_path, index=False)
-        
+
     def _build_data(self):
         """
         Data building method to add any additional data before exporting.
@@ -108,7 +108,6 @@ class IntegrityActivity(Activity):
         if solutions:
             self._validate_solutions(solutions)
         self.solutions = solutions
-
 
     def run(self) -> list:
         self.answers = []
@@ -137,7 +136,7 @@ class IntegrityActivity(Activity):
         data = [[str(datetime.now()), self.integrity] + self.answers]
         columns = ['DateTime', f'{self.name} Score'] + self.columns
         return data, columns
-    
+
     def _print_integrity(self):
         print(f'\nYour {self.name.lower()} integrity is at {self.integrity}%!', end='\n\n')
 
@@ -149,19 +148,18 @@ class IntegrityActivity(Activity):
                 integrity += integrity_piece
         self.integrity = round(integrity)
         return self.integrity
-    
+
     def _get_solutions(self):
         solutions = [solution for solution, answer in zip(self.solutions, self.answers) if answer in NO_ANSWERS]
         return solutions
-    
+
     def _print_solutions(self, solutions):
         print(f'You can improve your {self.name.lower()} by:',
-               *(f'• {solution}' for solution in solutions),
-               sep='\n', end='\n\n')
-        
+              *(f'• {solution}' for solution in solutions),
+              sep='\n', end='\n\n')
+
     def _validate_solutions(self, solutions):
         if not isinstance(solutions, (list, tuple)):
             raise ValueError('solutions iterable must be either a list or tuple.')
         if len(solutions) != len(self.questions):
             raise ValueError('solutions list or tuple length must equal the number of yesno_questions in this activity.')
-        
